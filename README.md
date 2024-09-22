@@ -27,7 +27,7 @@ docker
 prep -design picorv32a
 
 #Design is prepped and ready. Now Run the synthesis:
- run_synthesis
+run_synthesis
 ```
 # Screenshots Demo:
 <p align="center">
