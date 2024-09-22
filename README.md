@@ -29,7 +29,48 @@ prep -design picorv32a
 #Design is prepped and ready. Now Run the synthesis:
  run_synthesis
 ```
-# Demos Screenshots
+# Screenshots Demo:
 <p align="center">
-  <img src="" alt=" Pin diagram" width="800">
+  <img src="assests/Screenshot 2024-09-21 001212.png" alt=" Pin diagram" width="800">
 </p>
+<p align="center">
+  <img src="assests/Screenshot 2024-09-21 002510.png" alt=" Pin diagram" width="800">
+</p>
+<p align="center">
+  <img src="assests/Screenshot 2024-09-21 003936.png" width="800">
+</p>
+
+  **2.Calculate the flip flop ratio and DFF %.**
+### Directory for Synthesis report:
+```
+Desktop/
+├── work/
+├── tools/
+├── openlane_working_dir/
+├── openlane/
+├── design/
+├── picorv32a/
+├── runs/
+├── 20-09_18-38/
+├── reports/
+└── systhesis/
+```
+```
+#To see the total number of cells and number of D filp flop enter the given command
+less 1-yosys_4.chk.rpt
+```
+  Synthesis Report file:
+  <p align="center">
+  <img src="assests/Screenshot 2024-09-22 124140.png" width="800">
+</p>
+<p align="center">
+  <img src="assests/Screenshot 2024-09-22 132315.png" width="800">
+</p>
+
+```
+#In the above image, the number of cells are:14876
+#Number of flip flops are (sky_130_fd_sc_hd__dfxtp): 1613
+```
+$Flop Ratio={1613}/{14876}=0.1084296853993009$
+     $Percentage of DFF's= {0.1084296853993009}*{100}=10.84296853993009$ %
+
