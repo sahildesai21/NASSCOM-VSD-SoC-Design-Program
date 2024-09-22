@@ -2,8 +2,11 @@
 ## Section 1 - Inception of open-source EDA, OpenLANE and Sky130 PDK
 Task 1: 
   1. Using OpenLANE flow run 'picorv32a' design synthesis and generate necessary outputs.
-  2. Calculate the flop ratio.  $Flop Ratio={Number of D Flip Flop}/{Total Number of Cells}$
-     $Percentage of DFF's= {Flop Ratio}*{100}$.
+  2. Calculate the flop ratio:
+ 
+      *Flop Ratio = Number of D Flip Flop / Total Number of Cells*
+     
+       _Percentage of DFF's = Flop Ratio * 100_.
  
   **1.Run 'picorv32a' design synthesis using OpenLANE flow and generate necessary outputs.**
 ### Directory to invoke the OpqnLANE flow.
@@ -71,6 +74,7 @@ less 1-yosys_4.chk.rpt
 #In the above image, the number of cells are:14876
 #Number of flip flops are (sky_130_fd_sc_hd__dfxtp): 1613
 ```
-$Flop Ratio={1613}/{14876}=0.1084296853993009$
-     $Percentage of DFF's= {0.1084296853993009}*{100}=10.84296853993009$ %
+  _Flop Ratio = 1613 / 14876 = 0.1084296853993009_
+  
+  _Percentage of DFF's = 0.1084296853993009*100 = 10.84296853993009_ %
 
