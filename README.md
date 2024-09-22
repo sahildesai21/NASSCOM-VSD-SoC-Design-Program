@@ -32,7 +32,7 @@ prep -design picorv32a
 #Design is prepped and ready. Now Run the synthesis:
 run_synthesis
 ```
-# Screenshots Demo:
+# Demo Screenshots:
 <p align="center">
   <img src="assests/Screenshot 2024-09-21 001212.png" alt=" Pin diagram" width="800">
 </p>
