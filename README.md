@@ -31,16 +31,19 @@ prep -design picorv32a
 
 #Design is prepped and ready. Now Run the synthesis:
 run_synthesis
+
+# Exit from OpenLANE flow
+exit
 ```
 ## Demo Screenshots:
 <p align="center">
-  <img src="assests/Screenshot 2024-09-21 001212.png" alt=" Pin diagram" width="800">
+  <img src="" alt=" Pin diagram" width="800">
 </p>
 <p align="center">
-  <img src="assests/Screenshot 2024-09-21 002510.png" alt=" Pin diagram" width="800">
+  <img src="" alt=" Pin diagram" width="800">
 </p>
 <p align="center">
-  <img src="assests/Screenshot 2024-09-21 003936.png" width="800">
+  <img src="" width="800">
 </p>
 
  ### 2.Calculate the flip flop ratio and DFF %.
@@ -64,10 +67,10 @@ less 1-yosys_4.chk.rpt
 ```
   Synthesis Report file:
   <p align="center">
-  <img src="assests/Screenshot 2024-09-22 124140.png" width="800">
+  <img src="" width="800">
 </p>
 <p align="center">
-  <img src="assests/Screenshot 2024-09-22 132315.png" width="800">
+  <img src="" width="800">
 </p>
 
 ```
