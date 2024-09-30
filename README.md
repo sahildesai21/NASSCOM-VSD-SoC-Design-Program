@@ -58,7 +58,7 @@ Desktop/
 ├── design/
 ├── picorv32a/
 ├── runs/
-├── 20-09_18-38/
+├── 25-09_09-06/
 ├── reports/
 └── systhesis/
 
@@ -168,7 +168,7 @@ Desktop/
 ├── designs/  
 ├── picorv32a/
 ├── runs/
-├── 25-09_17-43/
+├── 25-09_17-33/
 ├── results/
 └── floorplan
 
@@ -226,7 +226,7 @@ Desktop/
 ├── designs/  
 ├── picorv32a/
 ├── runs/
-├── 25-09_17-43/
+├── 25-09_17-33/
 ├── results/
 └── placement
 
@@ -347,13 +347,13 @@ ext2spice cthresh 0 rthresh 0
 ext2spice
 ```
 
-Screenshot of tkcon window after running above commands
+Image of tkcon window after running above commands
 
 <p align="center">
   <img src="assests/custom inverter standard cell design/Screenshot 2024-09-26 215017.png" width="800">
 </p>
 
-Screenshot of created spice file
+Image of created spice file
 
 <p align="center">
   <img src="assests/custom inverter standard cell design/Screenshot 2024-09-26 215159.png" width="800">
@@ -503,8 +503,6 @@ Incorrectly implemented poly.9 rule no drc violation even though spacing < 0.48u
 <p align="center">
   <img src="assests/Find problem in the DRC section/Screenshot 2024-09-27 151944.png" width="800">
 </p>
-
-Incorrectly implemented poly.9 rule no drc violation even though spacing < 0.48u
 
 <p align="center">
   <img src="assests/Find problem in the DRC section/Screenshot 2024-09-27 160001.png" width="800">
@@ -739,7 +737,7 @@ Modified config.tcl to incorporate the new lef and update the library paths to t
   <img src="assests/day4sec_1/Screenshot 2024-09-29 195057.png" width="800">
 </p>
 
-6. Run openlane flow synthesis with newly inserted custom inverter cell.
+### 6. Run openlane flow synthesis with newly inserted custom inverter cell.
 
 Commands to invoke the OpenLANE flow include new lef and perform synthesis
 
@@ -787,7 +785,7 @@ Commands to inspect and adjust parameters for timing improvement, followed by ru
 
 ```
 # We now need to prepare the design again to update the variables.
-prep -design picorv32a -tag 24-03_10-03 -overwrite
+prep -design picorv32a -tag 27-09_18-54 -overwrite
 
 # Additional commands to integrate the newly added lef into the OpenLane flow's merged.lef file.
 set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
