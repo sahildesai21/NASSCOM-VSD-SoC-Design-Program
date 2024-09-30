@@ -1529,16 +1529,183 @@ gen_pdn
 Images of power distribution network run
 
 <p align="center">
-  <img src="assests/day4sec_3(openroad)/Screenshot 2024-09-28 223158.png" width="800">
+  <img src="assests/day5/Screenshot 2024-09-29 005831.png" width="800">
 </p>
 
 <p align="center">
-  <img src="assests/day4sec_3(openroad)/Screenshot 2024-09-28 223158.png" width="800">
+  <img src="assests/day5/Screenshot 2024-09-29 005904.png" width="800">
 </p>
 
+Commands to load PDN def in magic in another terminal
 
+```
+# Directory to path containing generated PDN def
 
+Desktop/
+├── work/
+├── tools/
+├── openlane_working_dir/
+├── openlane/
+├── designs/  
+├── picorv32a/
+├── runs/
+├── 28-09_19-22/
+├──tmp/
+└── floorplan
 
+# Command to load the PDN def in magic tool
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read 14-pdn.def &
+```
+
+Images of PDN def
+
+<p align="center">
+  <img src="assests/day5/Screenshot 2024-09-29 010736.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assests/day5/Screenshot 2024-09-29 010824.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assests/day5/Screenshot 2024-09-29 010905.png" width="800">
+</p>
+
+### 2. Perfrom detailed routing using TritonRoute.
+
+```
+# Check value of 'CURRENT_DEF'
+echo $::env(CURRENT_DEF)
+
+# Check value of 'ROUTING_STRATEGY'
+echo $::env(ROUTING_STRATEGY)
+
+# Command for detailed route using TritonRoute
+run_routing
+```
+
+Images of routing run
+
+<p align="center">
+  <img src="assests/day5/Screenshot 2024-09-29 011048.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assests/day5/Screenshot 2024-09-29 011953.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assests/day5/Screenshot 2024-09-29 012016.png" width="800">
+</p>
+
+Instructions to load the routed DEF file in Magic from a different terminal.
+
+```
+# Directory to path containing routed def
+
+Desktop/
+├── work/
+├── tools/
+├── openlane_working_dir/
+├── openlane/
+├── designs/  
+├── picorv32a/
+├── runs/
+├── 28-09_19-22/
+├── results/
+└── routing
+
+# Command to load the routed def in magic tool
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.def &
+```
+
+Images of routed def
+
+<p align="center">
+  <img src="assests/day5/Screenshot 2024-09-29 013742.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assests/day5/Screenshot 2024-09-29 013843.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assests/day5/Screenshot 2024-09-29 013943.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assests/day5/Screenshot 2024-09-29 014049.png" width="800">
+</p>
+
+### 3. Perform post-route parasitic extraction using the SPEF extractor.
+
+Commands for SPEF extraction using external tool
+
+```
+# Directory
+Desktop/
+├── work/
+├── tools/
+└── SPEF_EXTRACTOR
+
+# Command extract spef
+python3 main.py /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/28-09_19-22/tmp/merged.lef /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/28-09_19-22/results/routing/picorv32a.def
+```
+
+### 4. Conduct post-route OpenSTA timing analysis using the extracted parasitics from the routing. 
+
+Commands to execute in the OpenLANE flow for performing OpenROAD timing analysis using the integrated OpenSTA within OpenROAD.
+
+```
+# Command to run OpenROAD tool
+openroad
+
+# Reading lef file
+read_lef /openLANE_flow/designs/picorv32a/runs/28-09_19-22/tmp/merged.lef
+
+# Reading def file
+read_def /openLANE_flow/designs/picorv32a/runs/28-09_19-22/results/routing/picorv32a.def
+
+# Creating an OpenROAD database to work with
+write_db pico_route.db
+
+# Loading the created database in OpenROAD
+read_db pico_route.db
+
+# Read netlist post CTS
+read_verilog /openLANE_flow/designs/picorv32a/runs/28-09_19-22/results/synthesis/picorv32a.synthesis_preroute.v
+
+# Read library for design
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+
+# Link design and library
+link_design picorv32a
+
+# Read in the custom sdc we created
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+
+# Setting all cloks as propagated clocks
+set_propagated_clock [all_clocks]
+
+# Read SPEF
+read_spef /openLANE_flow/designs/picorv32a/runs/28-09_19-22/results/routing/picorv32a.spef
+
+# Generating custom timing report
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+
+# Exit to OpenLANE flow
+exit
+```
+
+Images of commands run and timing report generated
+
+<p align="center">
+  <img src="assests/day5/Screenshot 2024-09-29 020129.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assests/day5/Screenshot 2024-09-29 020214.png" width="800">
+</p>
 
 
 
