@@ -1309,11 +1309,11 @@ Images of commands run
 </p>
 
 <p align="center">
-  <img src=assests/day4sec_3(cts)/Screenshot 2024-09-28 201142.png" width="800">
+  <img src="assests/day4sec_3(cts)/Screenshot 2024-09-28 201142.png" width="800">
 </p>
 
 <p align="center">
-  <img src=assests/day4sec_3(cts)/Screenshot 2024-09-28 201305.png" width="800">
+  <img src="assests/day4sec_3(cts)/Screenshot 2024-09-28 201305.png" width="800">
 </p>
 
 ### 12. Post-CTS OpenROAD timing analysis.
@@ -1364,11 +1364,11 @@ exit
 Images of commands run and timing report generated
 
 <p align="center">
-  <img src=assests/day4sec_3(openroad)/Screenshot 2024-09-28 221857.png" width="800">
+  <img src="assests/day4sec_3(openroad)/Screenshot 2024-09-28 221857.png" width="800">
 </p>
 
 <p align="center">
-  <img src=assests/day4sec_3(openroad)/Screenshot 2024-09-28 221922.png" width="800">
+  <img src="assests/day4sec_3(openroad)/Screenshot 2024-09-28 221922.png" width="800">
 </p>
 
 ### 13. Explore post-CTS OpenROAD timing analysis by removing 'sky130_fd_sc_hd__clkbuf_1' cell from clock buffer list variable 'CTS_CLK_BUFFER_LIST'.
@@ -1452,16 +1452,102 @@ echo $::env(CTS_CLK_BUFFER_LIST)
 Images of commands run and timing report generated
 
 <p align="center">
-  <img src=assests/day4sec_3(openroad)/Screenshot 2024-09-28 222559.png" width="800">
+  <img src="assests/day4sec_3(openroad)/Screenshot 2024-09-28 222559.png" width="800">
 </p>
 
 <p align="center">
-  <img src=assests/day4sec_3(openroad)/Screenshot 2024-09-28 223017.png" width="800">
+  <img src="assests/day4sec_3(openroad)/Screenshot 2024-09-28 223017.png" width="800">
 </p>
 
 <p align="center">
-  <img src=assests/day4sec_3(openroad)/Screenshot 2024-09-28 223158.png" width="800">
+  <img src="assests/day4sec_3(openroad)/Screenshot 2024-09-28 223158.png" width="800">
 </p>
+
+## Section 5 - Final steps for RTL2GDS using tritonRoute and openSTA
+Tasks:
+1. Generate the Power Distribution Network (PDN) and examine the PDN layout.
+2. Perfrom detailed routing using TritonRoute.
+3. Perform post-route parasitic extraction using the SPEF extractor.
+4. Conduct post-route OpenSTA timing analysis using the extracted parasitics from the routing. 
+
+### 1. Generate the Power Distribution Network (PDN) and examine the PDN layout.
+```
+# Directory to invoke the OpqnLANE flow:
+
+Desktop/
+├── work/
+├── tools/
+├── openlane_working_dir/
+└── openlane
+
+# alias docker='docker run -it -v $(pwd):/openLANE_flow -v $PDK_ROOT:$PDK_ROOT -e PDK_ROOT=$PDK_ROOT -u $(id -u $USER):$(id -g $USER) efabless/openlane:v0.21'
+# Since we have aliased the long command to 'docker' we can invoke the OpenLANE flow docker sub-system by just running this command
+docker
+```
+
+```
+# After entering the Docker sub-system for OpenLANE, we can launch the flow in Interactive mode with the following command.
+./flow.tcl -interactive
+
+# With the OpenLANE flow now running, we need to provide the necessary packages for it to function correctly.
+package require openlane 0.9
+
+# The OpenLANE flow is now set to run any design. First, we need to prepare the 'picorv32a' design by creating the necessary files and directories.'
+prep -design picorv32a
+
+# Addiitional commands to include newly added lef to openlane flow merged.lef
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+
+# Command to set new value for SYNTH_STRATEGY
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+
+# Command to set new value for SYNTH_SIZING
+set ::env(SYNTH_SIZING) 1
+
+# With the design prepared, we can now run the synthesis using the following command.
+run_synthesis
+
+# Following commands are alltogather sourced in "run_floorplan" command
+init_floorplan
+place_io
+tap_decap_or
+
+# Now we are ready to run placement
+run_placement
+
+# Incase getting error
+unset ::env(LIB_CTS)
+
+# With placement done we are now ready to run CTS
+run_cts
+
+# Now that CTS is done we can do power distribution network
+gen_pdn 
+```
+
+Images of power distribution network run
+
+<p align="center">
+  <img src="assests/day4sec_3(openroad)/Screenshot 2024-09-28 223158.png" width="800">
+</p>
+
+<p align="center">
+  <img src="assests/day4sec_3(openroad)/Screenshot 2024-09-28 223158.png" width="800">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
