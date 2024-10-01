@@ -95,7 +95,7 @@ Tasks:
   5. Load the generated placement definition in the magic tool and review the placement.
 
      _Area of die in microns = Die width in microns * Die height in microns_
- ### Run picorv32a design floorplan using OpenLANE flow.
+ ### 1. Run picorv32a design floorplan using OpenLANE flow.
 Commands to start the OpenLANE flow and execute the floorplanning process.
 ```
 # Directory to invoke the OpenLANE flow:
