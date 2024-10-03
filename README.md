@@ -1708,7 +1708,7 @@ Images of commands run and timing report generated
 
 # Acknowledgements
   - [Kunal Gosh](https://github.com/kunalg123), Co-founder, VSD Corp. Pvt. Ltd.
-  - [Nickson P Jose](https://github.com/nickson-jose),Technical Lead  @ HCLTech | Ex-Intel
+  - [Nickson P Jose](https://github.com/nickson-jose), Technical Lead  @ HCLTech | Ex-Intel
   - [R. Timothy Edwards](https://github.com/RTimothyEdwards), Senior Vice President of Analog and Design, efabless Corporation.
   
 
