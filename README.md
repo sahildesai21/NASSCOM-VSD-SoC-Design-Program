@@ -1705,6 +1705,11 @@ Images of commands run and timing report generated
   <img src="assests/day5/Screenshot 2024-09-29 020214.png" width="800">
 </p>
 
+# Certificate
+
+<p align="center">
+  <img src="assests/Certificate/VSD SoC planning and designing workshop_page-0001.jpg" width="800">
+</p>
 
 # Acknowledgements
   - [Kunal Gosh](https://github.com/kunalg123), Co-founder, VSD Corp. Pvt. Ltd.
